@@ -1,6 +1,8 @@
 package controller;
 
+import XMLHandler.AbsolutBankXMLHandler;
 import XMLHandler.MTBankXMLHandler;
+import XMLHandler.VTBBankXMLHandler;
 import com.google.gson.Gson;
 import entity.*;
 import entity.secondary.Alfabank;
@@ -13,6 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -87,7 +90,38 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public String getJsonTextFromURI(URL url) throws IOException {
+    public void getAbsolutbankCurrency() throws IOException, ParserConfigurationException, SAXException {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser parser = factory.newSAXParser();
+        URL url = new URL("https://absolutbank.by/exchange-rates.xml");
+
+        InputStream inputStream = url.openStream();
+
+        AbsolutBankXMLHandler absolutBankXMLHandler = new AbsolutBankXMLHandler();
+        parser.parse(inputStream, absolutBankXMLHandler);
+        List<Department> departmentList = new ArrayList<>();
+        departmentList.add(new Department("All departments", absolutBankXMLHandler.getCurrencyList()));
+        BankRepository.getBankRepositoryInstance().addToBankList(new Bank("AbsolutBank", departmentList));
+        inputStream.close();
+    }
+
+    @Override
+    public void getVTBbankCurrency() throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser parser = factory.newSAXParser();
+        URL url = new URL("https://www.vtb-bank.by/sites/default/files/rates.xml");
+
+        InputStream inputStream = url.openStream();
+
+        VTBBankXMLHandler vtbBankXMLHandler = new VTBBankXMLHandler();
+        parser.parse(inputStream, vtbBankXMLHandler);
+        List<Department> departmentList = new ArrayList<>();
+        departmentList.add(new Department("All departments", vtbBankXMLHandler.getCurrencyList()));
+        BankRepository.getBankRepositoryInstance().addToBankList(new Bank("VTBBank", departmentList));
+        inputStream.close();
+    }
+
+    private String getJsonTextFromURI(URL url) throws IOException {
         InputStream inputStream = url.openStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
         StringBuilder sb = new StringBuilder();
@@ -98,5 +132,6 @@ public class ControllerImpl implements Controller {
         inputStream.close();
         return sb.toString();
     }
+
 }
 

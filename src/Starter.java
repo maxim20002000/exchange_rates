@@ -12,6 +12,8 @@ public class Starter {
         controller.getMTBankCurrency("Гомель");
         controller.getBelarusBankCurrency("Гродно");
         controller.getAlfabankCurrency();
+        controller.getAbsolutbankCurrency();
+        controller.getVTBbankCurrency();
 
     }
 }

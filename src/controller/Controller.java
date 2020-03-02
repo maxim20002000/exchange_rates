@@ -14,5 +14,7 @@ public interface Controller {
 
     void getAlfabankCurrency() throws IOException;
 
-    String getJsonTextFromURI(URL url) throws IOException;
+    void getAbsolutbankCurrency() throws IOException, ParserConfigurationException, SAXException;
+
+    void getVTBbankCurrency() throws ParserConfigurationException, SAXException, IOException;
 }
