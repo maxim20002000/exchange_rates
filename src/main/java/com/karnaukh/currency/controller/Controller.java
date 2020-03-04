@@ -15,7 +15,7 @@ public interface Controller {
 
     void getAlfabankCurrency() throws IOException;
 
-    void getAbsolutbankCurrency() throws IOException, ParserConfigurationException, SAXException;
+    void getAbsolutbankCurrency(String city) throws IOException, ParserConfigurationException, SAXException, JAXBException;
 
     void getVTBbankCurrency() throws ParserConfigurationException, SAXException, IOException;
 }
