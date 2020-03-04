@@ -11,6 +11,10 @@ import entity.secondary.Belarusbank;
 import org.xml.sax.SAXException;
 import repository.BankRepository;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -25,8 +29,8 @@ import java.util.List;
 public class ControllerImpl implements Controller {
 
     @Override
-    public void getMTBankCurrency(String city) throws ParserConfigurationException, SAXException, IOException {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
+    public void getMTBankCurrency(String city) throws ParserConfigurationException, SAXException, IOException, JAXBException {
+        /*SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         URL url = new URL("https://www.mtbank.by/currxml.php?ver=2.xml");
         InputStream inputStream = url.openStream();
@@ -37,7 +41,32 @@ public class ControllerImpl implements Controller {
 
         List<Department> departmentList = mtBankXMLHandler.getList();
         BankRepository.getBankRepositoryInstance().addToBankList(new Bank("MTBank", departmentList));
-        inputStream.close();
+        inputStream.close();*/
+
+        JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        URL url = new URL("https://www.mtbank.by/currxml.php?ver=2.xml");
+        JAXBElement<RatesType> unmarshalledObject = (JAXBElement<RatesType>) unmarshaller.unmarshal(url);
+
+        RatesType ratesType = unmarshalledObject.getValue();
+
+        List<Department> departmentList = new ArrayList<>();
+        for (DepartmentType departmentType : ratesType.getDepartment()) {
+            if (departmentType.getCity().equals(city)) {
+                List<Currency> currencyList = new ArrayList<>();
+                for (CurrencyType currencyType : departmentType.getCurrency()) {
+                    Currency currency = new Currency(currencyType.getCode(),
+                            currencyType.getCodeTo(),
+                            Double.parseDouble(currencyType.getPurchase()),
+                            Double.parseDouble(currencyType.getSale()));
+                    currencyList.add(currency);
+                }
+                departmentList.add(new Department(departmentType.getLabel(), new ArrayList<>(currencyList)));
+                currencyList.clear();
+            }
+
+        }
+        BankRepository.getBankRepositoryInstance().addToBankList(new Bank("MTBank", departmentList));
     }
 
     @Override
