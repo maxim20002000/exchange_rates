@@ -1,4 +1,4 @@
-package controller;
+package com.karnaukh.currency.controller;
 
 import org.xml.sax.SAXException;
 
