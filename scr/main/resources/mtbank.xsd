@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="rates" type="ratesType"/>
+    <xs:complexType name="currencyType">
+        <xs:sequence>
+            <xs:element name="code">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="RUB"/>
+                        <xs:enumeration value="USD"/>
+                        <xs:enumeration value="EUR"/>
+                        <xs:enumeration value="BYN"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="codeTo">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="BYN"/>
+                        <xs:enumeration value="EUR"/>
+                        <xs:enumeration value="USD"/>
+                        <xs:enumeration value="RUB"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element type="xs:string" name="purchase"/>
+            <xs:element type="xs:string" name="sale"/>
+            <xs:element name="cacheless" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1"/>
+                        <xs:enumeration value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="departmentType">
+        <xs:sequence>
+            <xs:element type="currencyType" name="currency" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="x" use="optional"/>
+        <xs:attribute type="xs:string" name="y" use="optional"/>
+        <xs:attribute type="xs:string" name="label" use="optional"/>
+        <xs:attribute type="xs:string" name="address" use="optional"/>
+        <xs:attribute type="xs:string" name="id" use="optional"/>
+        <xs:attribute type="xs:string" name="city" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="payokayType">
+        <xs:sequence>
+            <xs:element type="currencyType" name="currency" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="bestType">
+        <xs:sequence>
+            <xs:element type="currencyType" name="currency" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ratesType">
+        <xs:sequence>
+            <xs:element type="departmentType" name="department" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="payokayType" name="payokay"/>
+            <xs:element type="bestType" name="best"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="name"/>
+        <xs:attribute type="xs:string" name="date"/>
+    </xs:complexType>
+</xs:schema>

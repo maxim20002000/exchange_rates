@@ -1,4 +1,4 @@
-package entity;
+package com.karnaukh.currency.entity;
 
 import java.util.List;
 

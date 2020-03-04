@@ -1,14 +1,15 @@
-package XMLHandler;
+package com.karnaukh.currency.XMLHandler;
 
-import entity.Currency;
-import entity.Department;
+
+import com.karnaukh.currency.entity.Currency;
+import com.karnaukh.currency.entity.Department;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class MTBankXMLHandler extends DefaultHandler {
     private String code;
@@ -17,8 +18,8 @@ public class MTBankXMLHandler extends DefaultHandler {
     private String sale;
     private String lastElementName;
     private boolean isCurrentCity = false;
-    private List<Currency> currencyList = new ArrayList<>();
-    private List<Department> departmentList = new ArrayList<>();
+    private List<Currency> currencyList = new ArrayList<Currency>();
+    private List<Department> departmentList = new ArrayList<Department>();
     private String label;
 
     public void setCity(String city) {
@@ -34,9 +35,9 @@ public class MTBankXMLHandler extends DefaultHandler {
         if (qName.equals("department")) {
             if (attributes.getValue("city").equals(city)) {
                 isCurrentCity = true;
-                label=attributes.getValue("label");
-                if (!currencyList.isEmpty()){
-                    departmentList.add(new Department(label,currencyList));
+                label = attributes.getValue("label");
+                if (!currencyList.isEmpty()) {
+                    departmentList.add(new Department(label, currencyList));
                     currencyList.clear();
                 }
             } else {
@@ -83,7 +84,7 @@ public class MTBankXMLHandler extends DefaultHandler {
     }
 
 
-    public List<Department> getList(){
+    public List<Department> getList() {
         return departmentList;
     }
 

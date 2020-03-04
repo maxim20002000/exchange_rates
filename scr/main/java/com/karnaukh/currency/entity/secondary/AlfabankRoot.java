@@ -1,4 +1,4 @@
-package entity.secondary;
+package com.karnaukh.currency.entity.secondary;
 
 import com.google.gson.annotations.SerializedName;
 

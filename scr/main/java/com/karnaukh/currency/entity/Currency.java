@@ -1,4 +1,4 @@
-package entity;
+package com.karnaukh.currency.entity;
 
 public class Currency {
     private String nameCurrency;

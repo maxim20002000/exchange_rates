@@ -1,5 +1,7 @@
-import controller.Controller;
-import controller.ControllerImpl;
+package com.karnaukh.currency;
+
+import com.karnaukh.currency.controller.Controller;
+import com.karnaukh.currency.controller.ControllerImpl;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

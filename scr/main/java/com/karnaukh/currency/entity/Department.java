@@ -1,4 +1,4 @@
-package entity;
+package com.karnaukh.currency.entity;
 
 import java.util.List;
 
@@ -10,7 +10,6 @@ public class Department {
         this.nameDepartment = nameDepartment;
         this.currencyList = currencyList;
     }
-
 
 
 }

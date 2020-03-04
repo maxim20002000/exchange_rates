@@ -1,4 +1,4 @@
-package entity.secondary;
+package com.karnaukh.currency.entity.secondary;
 
 public class Belarusbank {
     private String USD_in;

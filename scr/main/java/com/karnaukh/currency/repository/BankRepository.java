@@ -1,6 +1,7 @@
-package repository;
+package com.karnaukh.currency.repository;
 
-import entity.Bank;
+
+import com.karnaukh.currency.entity.Bank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ public class BankRepository {
     private List<Bank> bankList;
 
     public BankRepository() {
-        this.bankList = new ArrayList<>();
+        this.bankList = new ArrayList<Bank>();
     }
 
     public static BankRepository getBankRepositoryInstance() {
