@@ -1,0 +1,355 @@
+<?xml version='1.0'?>
+<branches>
+    <branch id='921' name='Центр банковских услуг № 2'>
+        <rate currency='rub'>
+            <buy>6.666</buy>
+            <sell>6.666</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>6.666</buy>
+            <sell>6.666</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>6.66</buy>
+            <sell>7.777</sell>
+        </rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+    </branch>
+    <branch id='1' name='Головное отделение'>
+        <rate currency='pln'>
+            <buy>5.0800</buy>
+            <sell>5.8200</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2350</buy>
+            <sell>2.2390</sell>
+        </rate>
+        <rate currency='uah'>
+            <buy>7.0000</buy>
+            <sell>9.2000</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4970</buy>
+            <sell>2.5060</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3580</buy>
+            <sell>3.3720</sell>
+        </rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+    </branch>
+    <branch id='81' name='Центр банковских услуг в г. Брест'>
+        <rate currency='eur'>
+            <buy>6.666</buy>
+            <sell>6.666</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>6.666</buy>
+            <sell>6.666</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>6.666</buy>
+            <sell>6.666</sell>
+        </rate>
+        <rate currency='uah'>
+            <buy>6.666</buy>
+            <sell>6.666</sell>
+        </rate>
+        <rate currency='pln'>
+            <buy>5.0800</buy>
+            <sell>5.8200</sell>
+        </rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+    </branch>
+    <branch id='2' name='Центр банковских услуг в г. Гродно'>
+        <rate currency='rub'>
+            <buy>3.3580</buy>
+            <sell>3.3720</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2350</buy>
+            <sell>2.2390</sell>
+        </rate>
+        <rate currency='pln'>
+            <buy>5.0800</buy>
+            <sell>5.8200</sell>
+        </rate>
+        <rate currency='uah'>
+            <buy>7.0000</buy>
+            <sell>9.2000</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4970</buy>
+            <sell>2.5060</sell>
+        </rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+    </branch>
+    <branch id='741' name='Центр банковских услуг в г. Новополоцк'>
+        <rate currency='rub'>
+            <buy>3.3580</buy>
+            <sell>3.3720</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2350</buy>
+            <sell>2.2390</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4970</buy>
+            <sell>2.5060</sell>
+        </rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+    </branch>
+    <branch id='1001' name='Центр банковских услуг в г. Гомель'>
+        <rate currency='usd'>
+            <buy>2.2350</buy>
+            <sell>2.2390</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3580</buy>
+            <sell>3.3720</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4970</buy>
+            <sell>2.5060</sell>
+        </rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+    </branch>
+    <branch id='801' name='Офис «Запад»'>
+        <rate currency='usd'>
+            <buy>2.2350</buy>
+            <sell>2.2390</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4970</buy>
+            <sell>2.5060</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3580</buy>
+            <sell>3.3720</sell>
+        </rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+    </branch>
+    <branch id='781' name='Офис «Грушевка»'>
+        <rate currency='eur'>
+            <buy>2.4970</buy>
+            <sell>2.5060</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2350</buy>
+            <sell>2.2390</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3580</buy>
+            <sell>3.3720</sell>
+        </rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+    </branch>
+    <branch id='961' name='Касса № 24, касса № 38'>
+        <rate currency='pln'>
+            <buy>5.0000</buy>
+            <sell>5.8400</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2300</buy>
+            <sell>2.2430</sell>
+        </rate>
+        <rate currency='uah'>
+            <buy>6.5000</buy>
+            <sell>9.3000</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4880</buy>
+            <sell>2.5100</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3450</buy>
+            <sell>3.3800</sell>
+        </rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+    </branch>
+    <branch id='521' name='Касса № 26'>
+        <rate currency='pln'>
+            <buy>5.0000</buy>
+            <sell>5.8400</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2300</buy>
+            <sell>2.2430</sell>
+        </rate>
+        <rate currency='uah'>
+            <buy>6.5000</buy>
+            <sell>9.3000</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4880</buy>
+            <sell>2.5100</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3450</buy>
+            <sell>3.3800</sell>
+        </rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+    </branch>
+    <branch id='169' name='Пункт обмена валют № 13, 21, 24'>
+        <rate currency='rub'>
+            <buy>3.3450</buy>
+            <sell>3.3800</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2300</buy>
+            <sell>2.2430</sell>
+        </rate>
+        <rate currency='pln'>
+            <buy>5.0000</buy>
+            <sell>5.8400</sell>
+        </rate>
+        <rate currency='uah'>
+            <buy>6.5000</buy>
+            <sell>9.3000</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4880</buy>
+            <sell>2.5100</sell>
+        </rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+    </branch>
+    <branch id='361' name='Касса № 10 в г. Брест'>
+        <rate currency='pln'>
+            <buy>5.0000</buy>
+            <sell>5.8400</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2300</buy>
+            <sell>2.2430</sell>
+        </rate>
+        <rate currency='uah'>
+            <buy>6.5000</buy>
+            <sell>9.3000</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4880</buy>
+            <sell>2.5100</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3450</buy>
+            <sell>3.3800</sell>
+        </rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+    </branch>
+    <branch id='622' name='Касса № 11 в г. Брест'>
+        <rate currency='pln'>
+            <buy>5.0000</buy>
+            <sell>5.8400</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2300</buy>
+            <sell>2.2430</sell>
+        </rate>
+        <rate currency='uah'>
+            <buy>6.5000</buy>
+            <sell>9.3000</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4880</buy>
+            <sell>2.5100</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3450</buy>
+            <sell>3.3800</sell>
+        </rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+    </branch>
+    <branch id='981' name='Касса № 39'>
+        <rate currency='uah'>
+            <buy>6.5000</buy>
+            <sell>9.3000</sell>
+        </rate>
+        <rate currency='eur'>
+            <buy>2.4880</buy>
+            <sell>2.5100</sell>
+        </rate>
+        <rate currency='rub'>
+            <buy>3.3450</buy>
+            <sell>3.3800</sell>
+        </rate>
+        <rate currency='usd'>
+            <buy>2.2300</buy>
+            <sell>2.2430</sell>
+        </rate>
+        <rate currency='pln'>
+            <buy>5.0000</buy>
+            <sell>5.8400</sell>
+        </rate>
+        <rate currency='eur_rub'>74.0500</rate>
+        <rate currency='rub_eur'>74.5500</rate>
+        <rate currency='eur_usd'>1.1150</rate>
+        <rate currency='usd_eur'>1.1210</rate>
+        <rate currency='usd_rub'>66.3000</rate>
+        <rate currency='rub_usd'>66.7500</rate>
+    </branch>
+</branches>

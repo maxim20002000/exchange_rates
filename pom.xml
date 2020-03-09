@@ -46,8 +46,7 @@
                             <sources>
                                 <source>/src/main/resources/mtbank.xsd</source>
                             </sources>
-                            <packageName>mtbank</packageName>
-                            <outputDirectory>${basedir}/src/main/java/bankClassGenerated</outputDirectory>
+                            <packageName>com.karnaukh.currency.bankAPI.mtbank</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -63,8 +62,39 @@
                             <sources>
                                 <source>/src/main/resources/absolutbank.xsd</source>
                             </sources>
-                            <packageName>absolutBank</packageName>
-                            <outputDirectory>${basedir}/src/main/java/bankClassGenerated</outputDirectory>
+                            <packageName>com.karnaukh.currency.bankAPI.absolutBank</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>vtbbank</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <xjbSources>
+                                <xjbSource>/src/main/resources/global.xjb</xjbSource>
+                            </xjbSources>
+                            <sources>
+                                <source>/src/main/resources/vtbbank.xsd</source>
+                            </sources>
+                            <packageName>com.karnaukh.currency.bankAPI.vtbBank</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>belgazprombank</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <xjbSources>
+                                <xjbSource>/src/main/resources/global.xjb</xjbSource>
+                            </xjbSources>
+                            <sources>
+                                <source>/src/main/resources/belgazprom.xsd</source>
+                            </sources>
+                            <packageName>com.karnaukh.currency.bankAPI.belgazpromBank</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
@@ -72,5 +102,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
