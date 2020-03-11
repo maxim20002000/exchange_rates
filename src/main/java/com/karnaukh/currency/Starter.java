@@ -12,12 +12,12 @@ import java.io.IOException;
 public class Starter {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, JAXBException {
 		Controller controller = new ControllerImpl();
-		controller.getMTBankCurrency("Гомель");
+		/*controller.getMTBankCurrency("Гомель");
 		controller.getBelarusBankCurrency("Гродно");
-		controller.getAlfabankCurrency();
 		controller.getAbsolutbankCurrency("Брест");
 		controller.getVTBbankCurrency();
-		controller.getBelgazpromCurrency();
+		controller.getBelgazpromCurrency();*/
+		controller.getAlfabankCurrency();
 
 
 	}

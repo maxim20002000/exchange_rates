@@ -12,11 +12,13 @@ public interface Controller {
 
 	void getBelarusBankCurrency(String city) throws IOException;
 
-	void getAlfabankCurrency() throws IOException;
+	void getAlfabankCurrencyOLD() throws IOException;
 
 	void getAbsolutbankCurrency(String city) throws IOException, ParserConfigurationException, SAXException, JAXBException;
 
 	void getVTBbankCurrency() throws ParserConfigurationException, SAXException, IOException, JAXBException;
 
 	void getBelgazpromCurrency() throws JAXBException, MalformedURLException;
+
+	void getAlfabankCurrency() throws IOException;
 }

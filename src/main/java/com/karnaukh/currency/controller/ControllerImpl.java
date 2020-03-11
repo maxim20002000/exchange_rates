@@ -4,12 +4,26 @@ import XMLHandler.AbsolutBankXMLHandler;
 import XMLHandler.MTBankXMLHandler;
 import XMLHandler.VTBBankXMLHandler;
 import com.google.gson.Gson;
-import entity.*;
-import entity.secondary.Alfabank;
-import entity.secondary.AlfabankRoot;
-import entity.secondary.Belarusbank;
+import com.karnaukh.currency.bankAPI.absolutBank.BranchType;
+import com.karnaukh.currency.bankAPI.absolutBank.BranchesType;
+import com.karnaukh.currency.bankAPI.absolutBank.RateType;
+import com.karnaukh.currency.bankAPI.belgazpromBank.RangeType;
+import com.karnaukh.currency.bankAPI.mtbank.CurrencyType;
+import com.karnaukh.currency.bankAPI.mtbank.DepartmentType;
+import com.karnaukh.currency.bankAPI.mtbank.ObjectFactory;
+import com.karnaukh.currency.bankAPI.mtbank.RatesType;
+import com.karnaukh.currency.entity.Bank;
+import com.karnaukh.currency.entity.Currency;
+import com.karnaukh.currency.entity.Department;
+import com.karnaukh.currency.entity.secondary.Alfabank;
+import com.karnaukh.currency.entity.secondary.AlfabankRoot;
+import com.karnaukh.currency.entity.secondary.Belarusbank;
+import com.karnaukh.currency.repository.BankRepository;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.xml.sax.SAXException;
-import repository.BankRepository;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -87,7 +101,8 @@ public class ControllerImpl implements Controller {
     }
 
 	@Override
-	public void getAlfabankCurrency() throws IOException {
+	@Deprecated
+	public void getAlfabankCurrencyOLD() throws IOException {
 		URL url = new URL("https://developerhub.alfabank.by:8273/partner/1.0.0/public/rates");
 		String jsonText = getJsonTextFromURI(url);
 		Gson gson = new Gson();
@@ -229,6 +244,52 @@ public class ControllerImpl implements Controller {
 		}
 
 		BankRepository.getBankRepositoryInstance().addToBankList(new Bank("Belgazprom", departmentList));
+
+	}
+
+	@Override
+	public void getAlfabankCurrency() throws IOException {
+		Document document = null;
+		try {
+			document = Jsoup.connect("https://www.alfabank.by/currencys/")
+					.maxBodySize(0)
+					.get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Elements jsTabs = document.select("[class=js-tabs]");
+		List<Element> listElement = jsTabs.subList(0, jsTabs.size());
+		List<Department> departmentList = new ArrayList<>();
+		for (Element element : listElement) {
+			Elements typesCurrency = element.select("[class=offices-table_currency]");
+			List<Currency> currencyList = new ArrayList<>();
+			for (Element typeCurrency : typesCurrency.subList(0, 3)) {
+				Element nameElement = typeCurrency.select("[class=informer-currencies_name informer-currencies_name__normal]").first();
+				String name = "";
+				Elements buySellElement = typeCurrency.select("[class=informer-currencies_value-txt]");
+				Double buy = Double.parseDouble(buySellElement.get(0).text().replace(',', '.'));
+				Double sell = Double.parseDouble(buySellElement.get(1).text().replace(',', '.'));
+				if (nameElement.text().equals("1 Доллар США")) {
+					name = "USD";
+				}
+				if (nameElement.text().equals("1 Евро")) {
+					name = "EUR";
+				}
+				if (nameElement.text().equals("100 Российских рублей")) {
+					name = "RUB";
+				}
+				if (!name.equals("")) {
+					Currency currency = new Currency(name, "BYN", buy, sell);
+					currencyList.add(currency);
+				}
+
+
+			}
+			String departmentName = element.select("[class=offices-table_link underlined-link]").text();
+			departmentList.add(new Department(departmentName, new ArrayList<>(currencyList)));
+			currencyList.clear();
+		}
+		BankRepository.getBankRepositoryInstance().addToBankList(new Bank("Alfabank", departmentList));
 
 	}
 
