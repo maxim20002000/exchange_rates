@@ -1,8 +1,6 @@
 package controller;
 
-import XMLHandler.AbsolutBankXMLHandler;
-import XMLHandler.MTBankXMLHandler;
-import XMLHandler.VTBBankXMLHandler;
+
 import com.google.gson.Gson;
 import com.karnaukh.currency.bankAPI.absolutBank.BranchType;
 import com.karnaukh.currency.bankAPI.absolutBank.BranchesType;
@@ -250,6 +248,7 @@ public class ControllerImpl implements Controller {
 	@Override
 	public void getAlfabankCurrency() throws IOException {
 		Document document = null;
+		String post = "";
 		try {
 			document = Jsoup.connect("https://www.alfabank.by/currencys/")
 					.maxBodySize(0)
@@ -257,6 +256,30 @@ public class ControllerImpl implements Controller {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+/////////////////
+
+		String requestURL = "https://www.alfabank.by/currencys/";
+		String charset = "UTF-8";
+		MultipartUtility multipart = new MultipartUtility(requestURL, charset);
+
+		multipart.addFormField("SETPROPERTYFILTER", "Y");
+		multipart.addFormField("FORM_ACTION", "/currencys/");
+		multipart.addFormField("bxajaxid", "3a3acf041fd6513023d55d4946b018e5");
+		multipart.addFormField("AJAX_CALLjQuery", "Y");
+		multipart.addFormField("TYPE_SECTION", "office_currency");
+		multipart.addFormField("DATE", "11.03.2020");
+		multipart.addFormField("COORD_X", "");
+		multipart.addFormField("COORD_Y", "");
+		multipart.addFormField("COORD_TYPE", "");
+		multipart.addFormField("OF[8][]", "13");
+
+		List<String> response = multipart.finish();
+		for (String line : response) {
+			System.out.println(line);
+		}
+//////////////////
+
+
 		Elements jsTabs = document.select("[class=js-tabs]");
 		List<Element> listElement = jsTabs.subList(0, jsTabs.size());
 		List<Department> departmentList = new ArrayList<>();

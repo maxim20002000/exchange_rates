@@ -12,6 +12,7 @@ public interface Controller {
 
 	void getBelarusBankCurrency(String city) throws IOException;
 
+	@Deprecated
 	void getAlfabankCurrencyOLD() throws IOException;
 
 	void getAbsolutbankCurrency(String city) throws IOException, ParserConfigurationException, SAXException, JAXBException;
