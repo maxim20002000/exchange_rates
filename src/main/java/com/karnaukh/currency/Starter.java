@@ -17,7 +17,7 @@ public class Starter {
 		controller.getAbsolutbankCurrency("Брест");
 		controller.getVTBbankCurrency();
 		controller.getBelgazpromCurrency();*/
-		controller.getAlfabankCurrency();
+		controller.getAlfabankCurrency("Минск");
 
 
 	}

@@ -21,5 +21,5 @@ public interface Controller {
 
 	void getBelgazpromCurrency() throws JAXBException, MalformedURLException;
 
-	void getAlfabankCurrency() throws IOException;
+	void getAlfabankCurrency(String city) throws IOException;
 }
