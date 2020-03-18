@@ -11,4 +11,12 @@ public class Bank {
 		this.departmentList = departmentList;
 	}
 
+	@Override
+	public String toString() {
+		return "------- " + nameBank + " -------";
+	}
+
+	public List<Department> getDepartmentList() {
+		return departmentList;
+	}
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="branches" type="branchesType"/>
+  <xs:complexType name="rangeType">
+    <xs:sequence>
+      <xs:element name="buy">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.226"/>
+            <xs:enumeration value="2.227"/>
+            <xs:enumeration value="2.228"/>
+            <xs:enumeration value="2.48"/>
+            <xs:enumeration value="2.481"/>
+            <xs:enumeration value="2.482"/>
+            <xs:enumeration value="3.35"/>
+            <xs:enumeration value="3.351"/>
+            <xs:enumeration value="3.352"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="sell">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="2.25"/>
+            <xs:enumeration value="2.249"/>
+            <xs:enumeration value="2.248"/>
+            <xs:enumeration value="2.503"/>
+            <xs:enumeration value="2.502"/>
+            <xs:enumeration value="2.501"/>
+            <xs:enumeration value="3.398"/>
+            <xs:enumeration value="3.397"/>
+            <xs:enumeration value="3.396"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="min-amount" use="optional"/>
+    <xs:attribute type="xs:string" name="max-amount" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="rateType" mixed="true">
+    <xs:sequence>
+      <xs:element type="rangeType" name="range" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="buy" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="8.4"/>
+            <xs:enumeration value="2.8"/>
+            <xs:enumeration value="2.22"/>
+            <xs:enumeration value="5.5"/>
+            <xs:enumeration value="2.2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="sell" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="9.4"/>
+            <xs:enumeration value="2.895"/>
+            <xs:enumeration value="2.345"/>
+            <xs:enumeration value="5.79"/>
+            <xs:enumeration value="3.14"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="currency" use="optional"/>
+    <xs:attribute type="xs:string" name="Units" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="branchType">
+    <xs:sequence>
+      <xs:element type="rateType" name="rate" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="branchesType">
+    <xs:sequence>
+      <xs:element type="branchType" name="branch" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

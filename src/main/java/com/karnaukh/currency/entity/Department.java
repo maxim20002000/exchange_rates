@@ -11,5 +11,12 @@ public class Department {
 		this.currencyList = currencyList;
 	}
 
+	public List<Currency> getCurrencyList() {
+		return currencyList;
+	}
 
+	@Override
+	public String toString() {
+		return "******* " + nameDepartment + " *******";
+	}
 }

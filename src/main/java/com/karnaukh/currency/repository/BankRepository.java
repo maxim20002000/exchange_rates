@@ -25,5 +25,7 @@ public class BankRepository {
 		bankList.add(bank);
 	}
 
-
+	public List<Bank> getBankList() {
+		return bankList;
+	}
 }

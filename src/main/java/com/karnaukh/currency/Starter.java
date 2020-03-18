@@ -1,7 +1,6 @@
 package com.karnaukh.currency;
 
 import com.karnaukh.currency.controller.Controller;
-import com.karnaukh.currency.controller.ControllerImpl;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
@@ -11,13 +10,8 @@ import java.io.IOException;
 
 public class Starter {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, JAXBException {
-		Controller controller = new ControllerImpl();
-		/*controller.getMTBankCurrency("Гомель");
-		controller.getBelarusBankCurrency("Гродно");
-		controller.getAbsolutbankCurrency("Брест");
-		controller.getVTBbankCurrency();
-		controller.getBelgazpromCurrency();*/
-		controller.getAlfabankCurrency("Минск");
+		Controller controller = new Controller();
+		controller.printCurrencyRates("Гродно");
 
 
 	}

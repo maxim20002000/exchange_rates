@@ -1,25 +1,39 @@
 package com.karnaukh.currency.controller;
 
-import org.xml.sax.SAXException;
+
+import com.karnaukh.currency.service.CommonBankService;
+import com.karnaukh.currency.service.bank.AbsolutbankService;
+import com.karnaukh.currency.service.bank.AlfabankService;
+import com.karnaukh.currency.service.bank.BelarusbankService;
+import com.karnaukh.currency.service.bank.BelgazprombankService;
+import com.karnaukh.currency.service.bank.MTBankService;
+import com.karnaukh.currency.service.bank.VTBbankService;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
-public interface Controller {
-	void getMTBankCurrency(String city) throws ParserConfigurationException, SAXException, IOException, JAXBException;
+public class Controller {
 
-	void getBelarusBankCurrency(String city) throws IOException;
+	private AbsolutbankService absolutbankService = new AbsolutbankService();
+	private AlfabankService alfabankService = new AlfabankService();
+	private BelarusbankService belarusbankService = new BelarusbankService();
+	private BelgazprombankService belgazprombankService = new BelgazprombankService();
+	private MTBankService mtBankService = new MTBankService();
+	private VTBbankService vtBbankService = new VTBbankService();
+	private CommonBankService commonBankService = new CommonBankService();
 
-	@Deprecated
-	void getAlfabankCurrencyOLD() throws IOException;
+	public void updateCurrency(String city) throws IOException, JAXBException {
+		absolutbankService.getCurrencyRate(city);
+		alfabankService.getCurrencyRate(city);
+		belarusbankService.getCurrencyRate(city);
+		belgazprombankService.getCurrencyRate(city);
+		mtBankService.getCurrencyRate(city);
+		vtBbankService.getCurrencyRate(city);
+	}
 
-	void getAbsolutbankCurrency(String city) throws IOException, ParserConfigurationException, SAXException, JAXBException;
-
-	void getVTBbankCurrency() throws ParserConfigurationException, SAXException, IOException, JAXBException;
-
-	void getBelgazpromCurrency() throws JAXBException, MalformedURLException;
-
-	void getAlfabankCurrency(String city) throws IOException;
+	public void printCurrencyRates(String city) throws IOException, JAXBException {
+		updateCurrency(city);
+		commonBankService.printCurrencyRates();
+	}
 }
+

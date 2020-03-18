@@ -1,7 +1,6 @@
-package com.karnaukh.currency.controller;
+package com.karnaukh.currency.utils;
 
 import java.io.BufferedReader;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,7 +20,7 @@ import java.util.List;
  *
  * @author www.codejava.net
  */
-public class MultipartUtility {
+public class MultipartUtil {
 	private final String boundary;
 	private static final String LINE_FEED = "\r\n";
 	private HttpURLConnection httpConn;
@@ -37,7 +36,7 @@ public class MultipartUtility {
 	 * @param charset
 	 * @throws IOException
 	 */
-	public MultipartUtility(String requestURL, String charset)
+	public MultipartUtil(String requestURL, String charset)
 			throws IOException {
 		this.charset = charset;
 

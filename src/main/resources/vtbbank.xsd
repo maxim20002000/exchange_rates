@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="rates" type="ratesType"/>
+  <xs:complexType name="rangeType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="buy"/>
+      <xs:element type="xs:string" name="sell"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="condition" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="rangesType">
+    <xs:sequence>
+      <xs:element type="rangeType" name="range" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rateType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="code" minOccurs="0"/>
+      <xs:element type="xs:string" name="buy" minOccurs="0"/>
+      <xs:element type="xs:string" name="sell" minOccurs="0"/>
+      <xs:element type="rangesType" name="ranges" minOccurs="0"/>
+      <xs:element name="codeFrom" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="usd"/>
+            <xs:enumeration value="eur"/>
+            <xs:enumeration value="rub"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="codeTo" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="eur"/>
+            <xs:enumeration value="rub"/>
+            <xs:enumeration value="usd"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="value" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1.1210"/>
+            <xs:enumeration value="65.4000"/>
+            <xs:enumeration value="1.1110"/>
+            <xs:enumeration value="73.2000"/>
+            <xs:enumeration value="66.9000"/>
+            <xs:enumeration value="74.7000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="mainType">
+    <xs:sequence>
+      <xs:element type="rateType" name="rate" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cardType">
+    <xs:sequence>
+      <xs:element type="rateType" name="rate" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="conversionType">
+    <xs:sequence>
+      <xs:element type="rateType" name="rate" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ratesType">
+    <xs:sequence>
+      <xs:element type="mainType" name="main"/>
+      <xs:element type="cardType" name="card"/>
+      <xs:element type="conversionType" name="conversion"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="name"/>
+    <xs:attribute type="xs:string" name="date"/>
+  </xs:complexType>
+</xs:schema>

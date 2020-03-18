@@ -44,4 +44,9 @@ public class Currency {
 	public void setSalePrice(double salePrice) {
 		this.salePrice = salePrice;
 	}
+
+	@Override
+	public String toString() {
+		return "| " + nameCurrency + " -> " + nameCurrencyTo + " | Purchase: " + purchasePrice + " Sale: " + salePrice + " |";
+	}
 }
