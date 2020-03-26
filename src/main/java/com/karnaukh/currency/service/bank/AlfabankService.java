@@ -9,13 +9,19 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class AlfabankService extends ServiceUtil implements IBankCurrency {
+
+	@Autowired
+	private BankRepository bankRepository;
 
 	@Override
 	public void getCurrencyRate(String city) throws JAXBException, IOException {
@@ -121,6 +127,6 @@ public class AlfabankService extends ServiceUtil implements IBankCurrency {
 			departmentList.add(new Department(departmentName, new ArrayList<>(currencyList)));
 			currencyList.clear();
 		}
-		BankRepository.getBankRepositoryInstance().addToBankList(new Bank("Alfabank", departmentList));
+		bankRepository.addToBankList(new Bank("Alfabank", departmentList));
 	}
 }

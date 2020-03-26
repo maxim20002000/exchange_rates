@@ -4,13 +4,20 @@ import com.karnaukh.currency.entity.Bank;
 import com.karnaukh.currency.entity.Currency;
 import com.karnaukh.currency.entity.Department;
 import com.karnaukh.currency.repository.BankRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CommonBankService implements ICommonBankService {
+
+	@Autowired
+	private BankRepository bankRepository;
+
 	@Override
 	public void printCurrencyRates() {
-		List<Bank> bankList = BankRepository.getBankRepositoryInstance().getBankList();
+		List<Bank> bankList = bankRepository.getBankList();
 		for (Bank bank : bankList) {
 			System.out.println(bank.toString());
 			List<Department> departmentList = bank.getDepartmentList();

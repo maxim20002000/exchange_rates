@@ -6,6 +6,8 @@ import com.karnaukh.currency.entity.Bank;
 import com.karnaukh.currency.entity.Currency;
 import com.karnaukh.currency.entity.Department;
 import com.karnaukh.currency.repository.BankRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -16,7 +18,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class BelgazprombankService extends ServiceUtil implements IBankCurrency {
+
+	@Autowired
+	private BankRepository bankRepository;
 
 	@Override
 	public void getCurrencyRate(String city) throws JAXBException, IOException {
@@ -54,6 +60,6 @@ public class BelgazprombankService extends ServiceUtil implements IBankCurrency 
 			currencyList.clear();
 		}
 
-		BankRepository.getBankRepositoryInstance().addToBankList(new Bank("Belgazprombank", departmentList));
+		bankRepository.addToBankList(new Bank("Belgazprombank", departmentList));
 	}
 }

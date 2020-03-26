@@ -6,6 +6,8 @@ import com.karnaukh.currency.entity.Currency;
 import com.karnaukh.currency.entity.Department;
 import com.karnaukh.currency.entity.secondary.Belarusbank;
 import com.karnaukh.currency.repository.BankRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -13,7 +15,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Service
 public class BelarusbankService extends ServiceUtil implements IBankCurrency {
+
+	@Autowired
+	private BankRepository bankRepository;
+
 	@Override
 	public void getCurrencyRate(String city) throws JAXBException, IOException {
 		URL url = new URL("https://belarusbank.by/api/kursExchange?city=" + city);
@@ -39,6 +47,6 @@ public class BelarusbankService extends ServiceUtil implements IBankCurrency {
 			departmentList.add(new Department(belarusbank.getFilial_text(), new ArrayList<>(currencyList)));
 			currencyList.clear();
 		}
-		BankRepository.getBankRepositoryInstance().addToBankList(new Bank("Belarusbank", departmentList));
+		bankRepository.addToBankList(new Bank("Belarusbank", departmentList));
 	}
 }
