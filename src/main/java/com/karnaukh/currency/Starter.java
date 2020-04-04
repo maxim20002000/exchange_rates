@@ -16,7 +16,7 @@ public class Starter {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 		Controller controller = context.getBean(Controller.class);
 
-
+		controller.updateCurrency("Гродно");
 		controller.printCurrencyRates("Гродно");
 
 	}

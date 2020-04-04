@@ -23,4 +23,8 @@ public class BankRepository {
 	public List<Bank> getBankList() {
 		return bankList;
 	}
+
+	public void clearBankList() {
+		bankList.clear();
+	}
 }

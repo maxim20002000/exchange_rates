@@ -6,6 +6,7 @@ import com.karnaukh.currency.entity.Bank;
 import com.karnaukh.currency.entity.Currency;
 import com.karnaukh.currency.entity.Department;
 import com.karnaukh.currency.repository.BankRepository;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +25,21 @@ public class BelgazprombankService extends ServiceUtil implements IBankCurrency 
 	@Autowired
 	private BankRepository bankRepository;
 
+	@Autowired
+	private Logger logger;
+
 	@Override
-	public void getCurrencyRate(String city) throws JAXBException, IOException {
-		JAXBContext jaxbContext = JAXBContext.newInstance(com.karnaukh.currency.bankAPI.belgazpromBank.ObjectFactory.class);
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		URL url = new URL("https://belgazprombank.by/upload/courses.xml");
-		JAXBElement<BranchesType> unmarshalledObject =
-				(JAXBElement<com.karnaukh.currency.bankAPI.belgazpromBank.BranchesType>) unmarshaller.unmarshal(url);
-		com.karnaukh.currency.bankAPI.belgazpromBank.BranchesType branchesType = unmarshalledObject.getValue();
-		List<Department> departmentList = new ArrayList<>();
-		for (com.karnaukh.currency.bankAPI.belgazpromBank.BranchType branch : branchesType.getBranch()) {
+	public void getCurrencyRate(String city) {
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(com.karnaukh.currency.bankAPI.belgazpromBank.ObjectFactory.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			URL url = new URL("https://belgazprombank.by/upload/courses.xml");
+			JAXBElement<BranchesType> unmarshalledObject =
+					(JAXBElement<BranchesType>) unmarshaller.unmarshal(url);
+			BranchesType branchesType = unmarshalledObject.getValue();
+			List<Department> departmentList = new ArrayList<>();
+			//for (com.karnaukh.currency.bankAPI.belgazpromBank.BranchType branch : branchesType.getBranch().) {
+			com.karnaukh.currency.bankAPI.belgazpromBank.BranchType branch = branchesType.getBranch().get(0);
 			List<com.karnaukh.currency.bankAPI.belgazpromBank.RateType> rateList = branch.getRate();
 			List<Currency> currencyList = new ArrayList<>();
 			for (com.karnaukh.currency.bankAPI.belgazpromBank.RateType rate : rateList) {
@@ -56,10 +62,23 @@ public class BelgazprombankService extends ServiceUtil implements IBankCurrency 
 					}
 				}
 			}
-			departmentList.add(new Department(branch.getName(), new ArrayList<>(currencyList)));
+			departmentList.add(new Department("ALL departments", new ArrayList<>(currencyList)));
 			currencyList.clear();
-		}
+			//}
 
-		bankRepository.addToBankList(new Bank("Belgazprombank", departmentList));
+			bankRepository.addToBankList(new Bank("Belgazprombank", departmentList));
+		} catch (JAXBException e) {
+			System.out.println("--Error with Belgazprombank--");
+			logger.error("Jaxb exc", e);
+		} catch (MalformedURLException e) {
+			System.out.println("--Error with Belgazprombank (Check URL)--");
+			logger.error("Malformed URL exc", e);
+		} catch (NumberFormatException e) {
+			System.out.println("--Error with Belgazprombank--");
+			logger.error("Number format exc", e);
+		} catch (Exception e) {
+			System.out.println("--Error with Belgazprombank--");
+			logger.error("Other exc", e);
+		}
 	}
 }
