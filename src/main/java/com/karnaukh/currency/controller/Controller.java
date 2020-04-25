@@ -21,6 +21,7 @@ public class Controller {
 	public void printCurrencyRates(String city) throws IOException, JAXBException {
 		updateCurrency(city);
 		commonBankService.printCurrencyRates();
+		commonBankService.saveBanksCurrencyRatesToDB();
 	}
 }
 

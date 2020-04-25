@@ -1,5 +1,6 @@
 package com.karnaukh.currency.service;
 
+import com.karnaukh.currency.dao.DaoBank;
 import com.karnaukh.currency.entity.Bank;
 import com.karnaukh.currency.entity.Currency;
 import com.karnaukh.currency.entity.Department;
@@ -12,6 +13,7 @@ import com.karnaukh.currency.service.bank.MTBankService;
 import com.karnaukh.currency.service.bank.VTBbankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -41,16 +43,28 @@ public class CommonBankService implements ICommonBankService {
 	@Autowired
 	private VTBbankService vtBbankService;
 
+	@Autowired
+	private DaoBank daoBank;
+
 	@Override
 	public void updateCurrency(String city) throws JAXBException, IOException {
 		bankRepository.clearBankList();
 
-		absolutbankService.getCurrencyRate(city);
+		//absolutbankService.getCurrencyRate(city);
 		alfabankService.getCurrencyRate(city);
 		belarusbankService.getCurrencyRate(city);
 		belgazprombankService.getCurrencyRate(city);
 		mtBankService.getCurrencyRate(city);
 		vtBbankService.getCurrencyRate(city);
+	}
+
+	@Override
+	@Transactional
+	public void saveBanksCurrencyRatesToDB() {
+		List<Bank> banks = bankRepository.getBankList();
+		for (Bank bank: banks){
+			daoBank.save(bank);
+		}
 	}
 
 	@Override

@@ -7,4 +7,6 @@ public interface ICommonBankService {
 	void updateCurrency(String city) throws IOException, JAXBException;
 
 	void printCurrencyRates();
+
+	void saveBanksCurrencyRatesToDB();
 }
