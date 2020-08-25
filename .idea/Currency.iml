@@ -4,8 +4,8 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/com/karnaukh/currency/config/JpaConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/com/karnaukh/currency/config/SpringConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/karnaukh/currency/config/WebConfig.java</file>
         </fileset>
       </configuration>
     </facet>
@@ -14,7 +14,6 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="entityManagerFactory" />
           <factory-entry name="persistence" />
         </datasource-mapping>
         <naming-strategy-map />
@@ -36,9 +35,9 @@
     <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.11.3" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.2" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.2" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.0" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.19" level="project" />
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:5.2.5.RELEASE" level="project" />
@@ -50,6 +49,9 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-orm:5.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-mongodb:2.1.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.1.1.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.4.1" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.2.6.Final" level="project" />
@@ -67,5 +69,10 @@
     <orderEntry type="library" name="Maven: org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:1.0.0.Beta1" level="project" />
     <orderEntry type="library" name="Maven: javax.annotation:jsr250-api:1.0" level="project" />
     <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:5.2.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.modelmapper:modelmapper:2.3.8" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.mongodb:mongo-java-driver:3.12.4" level="project" />
   </component>
 </module>

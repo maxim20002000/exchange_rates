@@ -1,46 +1,74 @@
 package com.karnaukh.currency.entity;
 
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
-@Entity
-@Table(name = "banks")
+@Document(collection = "banks")
 public class Bank implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_bank", nullable = false)
-	private int idBank;
+    @Id
+    private String id;
 
-	@Column(name = "bank_name", nullable = false)
-	private String nameBank;
+    private String nameBank;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Department> departmentList;
+    private Timestamp timestamp;
 
-	public Bank() {
-	}
+    private String city;
 
-	public Bank(String nameBank, List<Department> departmentList) {
-		this.nameBank = nameBank;
-		this.departmentList = departmentList;
-	}
+    private List<Department> departmentList;
 
-	@Override
-	public String toString() {
-		return "------- " + nameBank + " -------";
-	}
+    public Bank() {
+    }
 
-	public List<Department> getDepartmentList() {
-		return departmentList;
-	}
+    public Bank(String nameBank, String city, List<Department> departmentList) {
+        this.nameBank = nameBank;
+        this.city = city;
+        this.departmentList = departmentList;
+        this.timestamp = new Timestamp(System.currentTimeMillis());
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNameBank() {
+        return nameBank;
+    }
+
+    public void setNameBank(String nameBank) {
+        this.nameBank = nameBank;
+    }
+
+    public List<Department> getDepartmentList() {
+        return departmentList;
+    }
+
+    public void setDepartmentList(List<Department> departmentList) {
+        this.departmentList = departmentList;
+    }
 }

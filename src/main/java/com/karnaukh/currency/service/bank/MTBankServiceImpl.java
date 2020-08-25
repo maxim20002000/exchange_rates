@@ -4,10 +4,10 @@ import com.karnaukh.currency.bankAPI.mtbank.CurrencyType;
 import com.karnaukh.currency.bankAPI.mtbank.DepartmentType;
 import com.karnaukh.currency.bankAPI.mtbank.ObjectFactory;
 import com.karnaukh.currency.bankAPI.mtbank.RatesType;
+import com.karnaukh.currency.dao.DaoRates;
 import com.karnaukh.currency.entity.Bank;
 import com.karnaukh.currency.entity.Currency;
 import com.karnaukh.currency.entity.Department;
-import com.karnaukh.currency.repository.BankRepository;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,18 +20,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Service
-public class MTBankService extends ServiceUtil implements IBankCurrency {
+public class MTBankServiceImpl implements BankService {
 
 	@Autowired
-	private BankRepository bankRepository;
+	private DaoRates daoRates;
 
 	@Autowired
 	private Logger logger;
 
 	@Override
-	public void getCurrencyRate(String city) {
+	public void updateCurrencyRate() {
+		String city = "Гродно";
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -56,7 +58,10 @@ public class MTBankService extends ServiceUtil implements IBankCurrency {
 				}
 
 			}
-			bankRepository.addToBankList(new Bank("MTBank", departmentList));
+			logger.info("MTbank rates updated in DB");
+			Bank mtBank = new Bank("MTbank",city, departmentList);
+			daoRates.saveBank(mtBank);
+
 		} catch (JAXBException e) {
 			System.out.println("--Error with MTbank--");
 			logger.error("Jaxb exc", e);
