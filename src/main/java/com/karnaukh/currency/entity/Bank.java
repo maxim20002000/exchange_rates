@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Document(collection = "banks")
@@ -16,7 +16,7 @@ public class Bank implements Serializable {
 
     private String nameBank;
 
-    private Timestamp timestamp;
+    private Date date;
 
     private String city;
 
@@ -29,15 +29,15 @@ public class Bank implements Serializable {
         this.nameBank = nameBank;
         this.city = city;
         this.departmentList = departmentList;
-        this.timestamp = new Timestamp(System.currentTimeMillis());
+        this.date = new Date();
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCity() {

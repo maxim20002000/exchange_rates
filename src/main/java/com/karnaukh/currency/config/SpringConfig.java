@@ -44,16 +44,6 @@ public class SpringConfig {
         return new ModelMapper();
     }
 
-	/*@Bean
-	public MongoDatabase connectorMongoDB(){
-		MongoClientURI uri = new MongoClientURI(
-				"mongodb://maxim:7503613maks@currencycluster-shard-00-00.9p3nt.mongodb.net:27017,currencycluster-shard-00-01.9p3nt.mongodb.net:27017,currencycluster-shard-00-02.9p3nt.mongodb.net:27017/currency?ssl=true&replicaSet=atlas-pstf4n-shard-0&authSource=admin&retryWrites=true&w=majority");
-
-		MongoClient mongoClient = new MongoClient(uri);
-		MongoDatabase database = mongoClient.getDatabase("currency");
-		return database;
-	}*/
-
     @Bean
     public MongoTemplate mongoTemplate() throws Exception {
 
@@ -95,7 +85,6 @@ public class SpringConfig {
                 idOffices.clear();
             }
         } catch (IOException e) {
-            // log error
         }
         return absolutbankOffices;
     }
@@ -111,12 +100,9 @@ public class SpringConfig {
             while ((line = reader.readLine()) != null) {
                 String city = line;
                 String index = reader.readLine();
-
-
                 alfabankIndexCities.put(city, index);
             }
         } catch (IOException e) {
-            // log error
         }
         return alfabankIndexCities;
     }

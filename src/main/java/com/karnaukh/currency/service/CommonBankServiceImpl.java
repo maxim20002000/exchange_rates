@@ -1,5 +1,7 @@
 package com.karnaukh.currency.service;
 
+import com.karnaukh.currency.dao.DaoRates;
+import com.karnaukh.currency.entity.Bank;
 import com.karnaukh.currency.service.bank.AbsolutbankServiceImpl;
 import com.karnaukh.currency.service.bank.AlfabankServiceImpl;
 import com.karnaukh.currency.service.bank.BelarusbankServiceImpl;
@@ -7,10 +9,12 @@ import com.karnaukh.currency.service.bank.BelgazprombankServiceImpl;
 import com.karnaukh.currency.service.bank.MTBankServiceImpl;
 import com.karnaukh.currency.service.bank.VTBbankServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class CommonBankServiceImpl implements CommonBankService {
@@ -33,8 +37,11 @@ public class CommonBankServiceImpl implements CommonBankService {
     @Autowired
     private VTBbankServiceImpl vtBbankServiceImpl;
 
+    @Autowired
+    private DaoRates daoRates;
+
     @Override
-    //@Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelay = 30 * 60 * 1000)
     public void updateCurrencyRates() throws JAXBException, IOException {
         absolutbankServiceImpl.updateCurrencyRate();
         alfabankServiceImpl.updateCurrencyRate();
@@ -42,5 +49,11 @@ public class CommonBankServiceImpl implements CommonBankService {
         belgazprombankServiceImpl.updateCurrencyRate();
         mtBankServiceImpl.updateCurrencyRate();
         vtBbankServiceImpl.updateCurrencyRate();
+    }
+
+    @Override
+    public List<Bank> getCurrencyRates(String city) {
+        List<Bank> bankList = daoRates.getBankList(city);
+        return bankList;
     }
 }
