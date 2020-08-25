@@ -7,6 +7,6 @@ import java.io.IOException;
 
 public interface BankService {
 
-	@Async
-	void updateCurrencyRate() throws JAXBException, IOException;
+    @Async
+    void updateCurrencyRate() throws JAXBException, IOException;
 }

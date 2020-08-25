@@ -18,7 +18,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @Service
 public class BelgazprombankServiceImpl implements BankService {
@@ -67,7 +66,7 @@ public class BelgazprombankServiceImpl implements BankService {
             currencyList.clear();
 
             logger.info("Belgazprombank rates updated in DB");
-            Bank belgazpromBank = new Bank("Belgazprombank","ALL", departmentList);
+            Bank belgazpromBank = new Bank("Belgazprombank", "ALL", departmentList);
             daoRates.saveBank(belgazpromBank);
         } catch (JAXBException e) {
             System.out.println("--Error with Belgazprombank--");

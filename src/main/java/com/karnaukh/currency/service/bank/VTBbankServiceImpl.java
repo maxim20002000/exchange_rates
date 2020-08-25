@@ -14,12 +14,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 
 @Service
@@ -32,7 +30,7 @@ public class VTBbankServiceImpl implements BankService {
     private Logger logger;
 
     @Override
-    public void updateCurrencyRate(){
+    public void updateCurrencyRate() {
         try {
 
             JAXBContext jaxbContext = JAXBContext.newInstance(com.karnaukh.currency.bankAPI.vtbBank.ObjectFactory.class);
@@ -54,7 +52,7 @@ public class VTBbankServiceImpl implements BankService {
             }
             departmentList.add(new Department("ALL departments", currencyList));
             logger.info("VTBbank rates updated in DB");
-            Bank vtbBank = new Bank("VTBbank","ALL", departmentList);
+            Bank vtbBank = new Bank("VTBbank", "ALL", departmentList);
             daoRates.saveBank(vtbBank);
         } catch (JAXBException e) {
             System.out.println("--Error with VTBbank--");

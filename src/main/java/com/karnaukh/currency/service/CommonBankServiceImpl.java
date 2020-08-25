@@ -7,13 +7,10 @@ import com.karnaukh.currency.service.bank.BelgazprombankServiceImpl;
 import com.karnaukh.currency.service.bank.MTBankServiceImpl;
 import com.karnaukh.currency.service.bank.VTBbankServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.util.List;
 
 @Service
 public class CommonBankServiceImpl implements CommonBankService {
@@ -36,25 +33,14 @@ public class CommonBankServiceImpl implements CommonBankService {
     @Autowired
     private VTBbankServiceImpl vtBbankServiceImpl;
 
-
-
     @Override
     //@Scheduled(fixedDelay = 5000)
     public void updateCurrencyRates() throws JAXBException, IOException {
-     /*   String city1 = "Гродно";
-
-        absolutbankServiceImpl.getCurrencyRate(city1);*/
+        absolutbankServiceImpl.updateCurrencyRate();
         alfabankServiceImpl.updateCurrencyRate();
-
-       // absolutbankServiceImpl.updateCurrencyRate();
-          //  belarusbankServiceImpl.updateCurrencyRate();
-
-
-
-   /*
-        belgazprombankServiceImpl.getCurrencyRate(city1);
-        mtBankServiceImpl.getCurrencyRate(city1);
-        vtBbankServiceImpl.getCurrencyRate(city1);*/
+        belarusbankServiceImpl.updateCurrencyRate();
+        belgazprombankServiceImpl.updateCurrencyRate();
+        mtBankServiceImpl.updateCurrencyRate();
+        vtBbankServiceImpl.updateCurrencyRate();
     }
-
 }

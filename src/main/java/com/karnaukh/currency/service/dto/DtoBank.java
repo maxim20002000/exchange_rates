@@ -1,7 +1,6 @@
 package com.karnaukh.currency.service.dto;
 
 import com.karnaukh.currency.entity.Department;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
 

@@ -10,21 +10,21 @@ import java.util.List;
 @Repository
 public class BankRepository {
 
-	private List<Bank> bankList;
+    private List<Bank> bankList;
 
-	public BankRepository() {
-		this.bankList = new ArrayList<>();
-	}
+    public BankRepository() {
+        this.bankList = new ArrayList<>();
+    }
 
-	public void addToBankList(Bank bank) {
-		bankList.add(bank);
-	}
+    public void addToBankList(Bank bank) {
+        bankList.add(bank);
+    }
 
-	public List<Bank> getBankList() {
-		return bankList;
-	}
+    public List<Bank> getBankList() {
+        return bankList;
+    }
 
-	public void clearBankList() {
-		bankList.clear();
-	}
+    public void clearBankList() {
+        bankList.clear();
+    }
 }

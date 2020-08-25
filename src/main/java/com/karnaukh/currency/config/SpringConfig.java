@@ -77,21 +77,21 @@ public class SpringConfig {
     }
 
     @Bean("absolutBankIdOffices")
-    public Map<String,List<String>> parsingAbsolutbankOffices() {
-        Map<String,List<String>> absolutbankOffices = new HashMap<>();
+    public Map<String, List<String>> parsingAbsolutbankOffices() {
+        Map<String, List<String>> absolutbankOffices = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
-                        new FileInputStream("C:\\Users\\MAKS\\IdeaProjects\\GIT\\exchange_rates\\src\\main\\resources\\absolutbank"), StandardCharsets.UTF_8))){
+                        new FileInputStream("C:\\Users\\MAKS\\IdeaProjects\\GIT\\exchange_rates\\src\\main\\resources\\absolutbank"), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String city = line;
-                line= reader.readLine();
+                line = reader.readLine();
                 List<String> idOffices = new ArrayList<>();
-                for (String subString:line.split("\\s")){
+                for (String subString : line.split("\\s")) {
                     idOffices.add(subString);
                 }
-                absolutbankOffices.put(city,new ArrayList<>(idOffices));
+                absolutbankOffices.put(city, new ArrayList<>(idOffices));
                 idOffices.clear();
             }
         } catch (IOException e) {
@@ -102,18 +102,18 @@ public class SpringConfig {
 
 
     @Bean("alfabankIndexCities")
-    public Map<String,String> parsingAlfabankIndexCities() {
-        Map<String,String> alfabankIndexCities = new HashMap<>();
+    public Map<String, String> parsingAlfabankIndexCities() {
+        Map<String, String> alfabankIndexCities = new HashMap<>();
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
-                        new FileInputStream("C:\\Users\\MAKS\\IdeaProjects\\GIT\\exchange_rates\\src\\main\\resources\\alfabank"), StandardCharsets.UTF_8))){
+                        new FileInputStream("C:\\Users\\MAKS\\IdeaProjects\\GIT\\exchange_rates\\src\\main\\resources\\alfabank"), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String city = line;
-               String  index= reader.readLine();
+                String index = reader.readLine();
 
 
-                alfabankIndexCities.put(city,index);
+                alfabankIndexCities.put(city, index);
             }
         } catch (IOException e) {
             // log error
