@@ -2,6 +2,7 @@ package com.karnaukh.currency.service;
 
 import com.karnaukh.currency.dao.DaoRates;
 import com.karnaukh.currency.entity.Bank;
+import com.karnaukh.currency.entity.Currency;
 import com.karnaukh.currency.service.bank.AbsolutbankServiceImpl;
 import com.karnaukh.currency.service.bank.AlfabankServiceImpl;
 import com.karnaukh.currency.service.bank.BelarusbankServiceImpl;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -55,5 +59,18 @@ public class CommonBankServiceImpl implements CommonBankService {
     public List<Bank> getCurrencyRates(String city) {
         List<Bank> bankList = daoRates.getBankList(city);
         return bankList;
+    }
+
+    @Override
+    public List<Bank> getCurrencyForBank(Bank bank) {
+        Date date = new Date();
+        daoRates.getCurrencyForBank(bank,date.toInstant().minus(7,ChronoUnit.DAYS),date.toInstant());
+        return null;
+    }
+
+    @Override
+    public void setBestCurrencyForCurrentBank(Bank bank) {
+        daoRates.setBestCurrencyForCurrentBank(bank);
+
     }
 }

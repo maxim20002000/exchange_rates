@@ -38,4 +38,20 @@ public class CurrencyController {
         List<Bank> bankList = commonBankService.getCurrencyRates(city);
         return ResponseEntity.ok().body(bankDtoConverter.convertListToDto(bankList));
     }
+
+    @GetMapping(value = "/getCurrencyForBank/{bankName}")
+    public ResponseEntity<List<DtoBank>> getCurrencyForBank(@PathVariable String bankName) throws JAXBException, IOException, InterruptedException {
+        Bank bank = new Bank();
+        bank.setNameBank(bankName);
+        List<Bank> bankList = commonBankService.getCurrencyForBank(bank);
+        return ResponseEntity.ok().body(bankDtoConverter.convertListToDto(bankList));
+    }
+
+    @GetMapping(value = "/setBestCurrencyForCurrentBank/{bankName}")
+    public ResponseEntity<DtoResponse> getBestCurrencyForCurrentBank(@PathVariable String bankName) throws JAXBException, IOException, InterruptedException {
+        Bank bank = new Bank();
+        bank.setNameBank(bankName);
+        commonBankService.setBestCurrencyForCurrentBank(bank);
+        return ResponseEntity.ok().body(new DtoResponse("ff"));
+    }
 }
