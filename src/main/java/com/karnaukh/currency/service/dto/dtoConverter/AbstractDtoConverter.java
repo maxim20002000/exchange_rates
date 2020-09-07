@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public abstract class AbstractDtoConverter<T, Dto> {
@@ -12,6 +13,7 @@ public abstract class AbstractDtoConverter<T, Dto> {
     private ModelMapper modelMapper;
     private Class<T> tClass;
     private Class<Dto> dtoClass;
+
 
     public AbstractDtoConverter(Class<T> tClass, Class<Dto> dtoClass) {
         this.tClass = tClass;
@@ -30,6 +32,11 @@ public abstract class AbstractDtoConverter<T, Dto> {
         return tList.stream()
                 .map(source -> convertToDto(source))
                 .collect(Collectors.toList());
+    }
+
+    public TreeSet<Dto> convertTreeSetToDto(TreeSet<T> tSet) {
+        return (TreeSet<Dto>) tSet.stream()
+                .map(source -> convertToDto(source)).collect(Collectors.toSet());
     }
 
     public List<T> convertListToEntity(List<Dto> dtoList) {

@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class BankDtoConverter extends AbstractDtoConverter<Bank, DtoBank> {
 
-
     public BankDtoConverter() {
         super(Bank.class, DtoBank.class);
     }
-
 }

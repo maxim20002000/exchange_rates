@@ -1,15 +1,15 @@
-package com.karnaukh.currency.entity;
+package com.karnaukh.currency.service.dto;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
-@Document(collection = "bestAndWorstCurrency")
-public class BestAndWorstCurrency implements Serializable, Comparable<BestAndWorstCurrency> {
+public class DtoBestAndWorstCurrency {
+
     String bankName;
 
-    Instant date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss.SSS dd-MM-yyyy")
+    Date date;
 
     Double bestUsdPurchase;
 
@@ -35,27 +35,7 @@ public class BestAndWorstCurrency implements Serializable, Comparable<BestAndWor
 
     Double worstRubSale;
 
-    public BestAndWorstCurrency() {
-    }
-
-    public BestAndWorstCurrency(String bankName, Double bestUsdPurchase, Double bestUsdSale,
-                                Double bestEurPurchase, Double bestEurSale, Double bestRubPurchase, Double bestRubSale,
-                                Double worstUsdPurchase, Double worstUsdSale, Double worstEurPurchase,
-                                Double worstEurSale, Double worstRubPurchase, Double worstRubSale) {
-        this.bankName = bankName;
-        this.date = Instant.now();
-        this.bestUsdPurchase = bestUsdPurchase;
-        this.bestUsdSale = bestUsdSale;
-        this.bestEurPurchase = bestEurPurchase;
-        this.bestEurSale = bestEurSale;
-        this.bestRubPurchase = bestRubPurchase;
-        this.bestRubSale = bestRubSale;
-        this.worstUsdPurchase = worstUsdPurchase;
-        this.worstUsdSale = worstUsdSale;
-        this.worstEurPurchase = worstEurPurchase;
-        this.worstEurSale = worstEurSale;
-        this.worstRubPurchase = worstRubPurchase;
-        this.worstRubSale = worstRubSale;
+    public DtoBestAndWorstCurrency() {
     }
 
     public String getBankName() {
@@ -66,18 +46,14 @@ public class BestAndWorstCurrency implements Serializable, Comparable<BestAndWor
         this.bankName = bankName;
     }
 
-    public Instant getDate() {
+    public Date getDate() {
         return date;
     }
 
-    @Override
-    public int compareTo(BestAndWorstCurrency o) {
-        return date.compareTo(o.getDate());
-    }
-
-    public void setDate(Instant date) {
+    public void setDate(Date date) {
         this.date = date;
     }
+
 
     public Double getBestUsdPurchase() {
         return bestUsdPurchase;

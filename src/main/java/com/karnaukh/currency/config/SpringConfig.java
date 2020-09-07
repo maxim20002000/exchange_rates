@@ -51,6 +51,8 @@ public class SpringConfig {
                 "mongodb://maxim:7503613maks@currencycluster-shard-00-00.9p3nt.mongodb.net:27017,currencycluster-shard-00-01.9p3nt.mongodb.net:27017,currencycluster-shard-00-02.9p3nt.mongodb.net:27017/currency?ssl=true&replicaSet=atlas-pstf4n-shard-0&authSource=admin&retryWrites=true&w=majority");
         MongoClient mongoClient = new MongoClient(uri);
         MongoTemplate mongoTemplate = new MongoTemplate(mongoClient, "currency");
+        System.setProperty("DEBUG.MONGO", "true");
+        System.setProperty("DB.TRACE", "true");
         return mongoTemplate;
     }
 
@@ -64,6 +66,18 @@ public class SpringConfig {
             e.printStackTrace();
         }
         return cities;
+    }
+
+    @Bean("bankNames")
+    public List<String> parsingBankNames() {
+        List<String> bankNames = new ArrayList<>();
+        String fileName = "C:\\Users\\MAKS\\IdeaProjects\\GIT\\exchange_rates\\src\\main\\resources\\banksNames";
+        try (Stream<String> stream = Files.lines(Paths.get(fileName), StandardCharsets.UTF_8)) {
+            bankNames = stream.collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bankNames;
     }
 
     @Bean("absolutBankIdOffices")

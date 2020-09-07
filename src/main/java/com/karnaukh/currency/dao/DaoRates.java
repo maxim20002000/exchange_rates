@@ -1,6 +1,5 @@
 package com.karnaukh.currency.dao;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.karnaukh.currency.entity.Bank;
 import com.karnaukh.currency.entity.BestAndWorstCurrency;
 import com.karnaukh.currency.entity.Currency;
@@ -25,7 +24,7 @@ public class DaoRates {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public void saveBank(Bank bank) throws JsonProcessingException {
+    public void saveBank(Bank bank) {
         MongoOperations mongoOperations = mongoTemplate;
         mongoOperations.insert(bank);
     }
@@ -36,7 +35,9 @@ public class DaoRates {
         Date date = new Date();
         date.toInstant().minusSeconds(60 * 60);
 
-        query.addCriteria(Criteria.where("city").is(city));
+        Criteria criteria = new Criteria();
+        criteria.orOperator(Criteria.where("city").is(city), Criteria.where("city").is("ALL"));
+        query.addCriteria(criteria);
         query.addCriteria(Criteria.where("date").gt(Instant.now().minus(30, ChronoUnit.MINUTES)));
         List<Bank> bankList = mongoOperations.find(query, Bank.class);
         List<String> bankNames = new ArrayList<>();
@@ -69,6 +70,17 @@ public class DaoRates {
 
         List<Bank> obj = mongoOperations.find(query, Bank.class);
         return null;
+    }
+
+    public List<BestAndWorstCurrency> getBestAndWorstRatesForThePeriod(Bank bank, Instant from, Instant until) {
+        MongoOperations mongoOperations = mongoTemplate;
+        Query query = new Query();
+        Criteria criteria = new Criteria();
+        criteria.andOperator(Criteria.where("date").gte(from), Criteria.where("date").lte(until));
+        query.addCriteria(Criteria.where("bankName").is(bank.getNameBank()));
+        query.addCriteria(criteria);
+        List<BestAndWorstCurrency> bestAndWorstCurrencyList = mongoOperations.find(query, BestAndWorstCurrency.class);
+        return bestAndWorstCurrencyList;
     }
 
     public void setBestCurrencyForCurrentBank(Bank currentBank) {

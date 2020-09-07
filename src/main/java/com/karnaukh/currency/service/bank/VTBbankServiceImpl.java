@@ -44,10 +44,15 @@ public class VTBbankServiceImpl implements BankService {
             List<Department> departmentList = new ArrayList<>();
             List<Currency> currencyList = new ArrayList<>();
             for (RateType rateType : rateTypeList) {
+
                 Currency currency = new Currency("BYN",
                         rateType.getCode().toUpperCase(),
                         Double.parseDouble(rateType.getBuy()),
                         Double.parseDouble(rateType.getSell()));
+                if (rateType.getCode().toUpperCase().equals("RUB")) {
+                    currency.setPurchasePrice(currency.getPurchasePrice() * 100);
+                    currency.setSalePrice(currency.getSalePrice() * 100);
+                }
                 currencyList.add(currency);
             }
             departmentList.add(new Department("ALL departments", currencyList));
